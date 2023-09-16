@@ -24,8 +24,8 @@
   <script>
     $(document).ready(function() {
       $("#dangki").click(function() {
-        // Chuyển hướng đến trang "dangki.jsp"
-        window.location.href = "WEB-INF/DangKi.jsp";
+        // Chuyển hướng đến trang "register.jsp"
+        window.location.href = "register.jsp";
       });
     });
   </script>
@@ -47,7 +47,7 @@
     <button name="" type="submit" class="btn btn-primary">Đăng nhập</button>
     <input type="hidden" name="action" value="login">
     <h5>Bạn chưa có tài khoản?</h5>
-    <a href="DangKi.jsp" class="btn-btn-link">Đăng kí</a>
+    <a href="register.jsp" class="btn-btn-link">Đăng kí</a>
     <input type="hidden" name="action" value="log">
 
   </form>

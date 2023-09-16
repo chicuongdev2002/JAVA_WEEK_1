@@ -38,7 +38,8 @@
 <body>
 <div class="wrapper">
     <h2 class="text-center">Đăng ký tài khoản</h2>
-    <form  action="LoginControl" id="registrationForm" onsubmit="return validateForm()" method="post">
+    <form  action="login-control" id="registrationForm" onsubmit="return validateForm()" method="post">
+        <p class="text-danger">${messengerRegis}</p>
         <div class="mb-3">
             <label for="accountId" class="form-label">Account ID:</label>
             <input type="text" id="accountId" name="accountId" class="form-control" required>
@@ -71,7 +72,7 @@
                 <option value="1">Hoạt động</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Đăng ký</button>
+        <button type="submit" class="btn btn-primary" name="action" id="log">Đăng ký</button>
         <button class="btn btn-primary" onclick="window.location.href='index.jsp'">Quay lại</button>
     </form>
 

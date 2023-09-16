@@ -64,4 +64,30 @@ public class GantAccessRepository {
         return false;
 
     }
+    //Lấy roleId Bởi account_id
+    public String getRoleByAccId (String acId)
+    {
+        String roleId= null;
+
+        try {
+            String sql = "SELECT role_id FROM grant_access WHERE account_id = ? ";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, acId);
+
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+
+               roleId=rs.getString("role_id");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return roleId;
+
+
+
+    }
 }

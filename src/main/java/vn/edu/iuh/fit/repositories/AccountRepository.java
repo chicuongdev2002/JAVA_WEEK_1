@@ -11,26 +11,26 @@ public class AccountRepository {
     public AccountRepository() {
         connection = ConnectDB.getInstance().getConnection();
     }
-    //Thêm account
-//    public boolean addAccount(Account account) {
-//        try {
-//            String sql = "INSERT INTO account (account_id,full_name,password,email,phone,status) VALUES (?,?,?,?,?)";
-//       PreparedStatement statement = connection.prepareStatement(sql);
-//       statement.setString(1, account.getAccountId());
-//       statement.setString(2, account.getFullName());
-//        statement.setString(3, account.getPassword());
-//        statement.setString(4, account.getEmail());
-//        statement.setString(5, account.getPhone());
-//        statement.setInt(6, account.getStatus());
-//        if(statement.executeUpdate()>0);
-//        {
-//            return true;
-//        }
-//        }catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//            return false;
-//    }
+   //Thêm account
+    public boolean createAccount(Account account) {
+        try {
+            String sql = "INSERT INTO account (account_id,full_name,password,email,phone,status) VALUES (?,?,?,?,?)";
+       PreparedStatement statement = connection.prepareStatement(sql);
+       statement.setString(1, account.getAccountId());
+       statement.setString(2, account.getFullName());
+        statement.setString(3, account.getPassword());
+        statement.setString(4, account.getEmail());
+        statement.setString(5, account.getPhone());
+        statement.setInt(6, account.getStatus());
+        if(statement.executeUpdate()>0);
+        {
+            return true;
+        }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return false;
+    }
     //Lấy account
 //    public ArrayList<Account> getAccount(){
 //        ArrayList<Account> list = new ArrayList<Account>();
@@ -72,5 +72,23 @@ public Account checkAccount(String userName,String password)
         e.printStackTrace();
     }
     return account;
+}
+//Lấy account theo id
+public Account getAccountById(String accountId) {
+    String query = "SELECT * FROM accounts WHERE account_id = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setString(1, accountId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            Account account = new Account();
+            account.setAccountId(resultSet.getString("account_id"));
+            account.setFullName(resultSet.getString("full_name"));
+            // Thêm các trường khác vào đây
+            return account;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
 }
 }
