@@ -1,14 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Win 11
-  Date: 9/15/2023
-  Time: 3:14 PM
+  Date: 9/19/2023
+  Time: 10:43 AM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <jsp:useBean id="da" class="vn.edu.iuh.fit.repositories.AccountRepository" scope="request"></jsp:useBean>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chính</title>
@@ -56,7 +58,8 @@
 <body>
 <!-- Menu -->
 <ul class="nav">
-    <li><a href="displayaccount.jsp">Account</a></li>
+    <li><a href="dashboard.jsp">Home</a></li>
+    <li><a href="">Account</a></li>
     <li><a href="#">Role</a></li>
     <li><a href="#">Log</a></li>
     <li style="float:right"><button class="logout-button" onclick="logout()">Đăng xuất</button></li>
@@ -64,7 +67,30 @@
 
 <!-- Nội dung trang web -->
 <div style="padding: 20px;">
-    <h1>Xin chào, <%= session.getAttribute("username") %>!</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>UserID</th>
+            <th>FullName</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="user" items="${da.allAccount}">
+            <tr>
+                <td>${user.accountId}</td>
+                <td>${user.fullName}</td>
+                <td>${user.password}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>${user.status}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 
 

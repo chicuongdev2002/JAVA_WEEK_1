@@ -31,29 +31,29 @@ public class AccountRepository {
         }
             return false;
     }
-    //Lấy account
-//    public ArrayList<Account> getAccount(){
-//        ArrayList<Account> list = new ArrayList<Account>();
-//        try {
-//            String sql = "SELECT * FROM account";
-//            Statement statement = connection.createStatement();
-//            ResultSet rs = statement.executeQuery(sql);
-//            while(rs.next())
-//            {
-//                Account account = new Account();
-//                account.setAccountId(rs.getString("account_id"));
-//                account.setFullName(rs.getString("full_name"));
-//                account.setPassword(rs.getString("password"));
-//                account.setEmail(rs.getString("email"));
-//                account.setPhone(rs.getString("phone"));
-//                account.setStatus(rs.getInt("status"));
-//                list.add(account);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
+   //Lấy danh sách account
+    public ArrayList<Account> getAllAccount(){
+        ArrayList<Account> list = new ArrayList<Account>();
+        try {
+            String sql = "SELECT * FROM account";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while(rs.next())
+            {
+                Account account = new Account();
+                account.setAccountId(rs.getString("account_id"));
+                account.setFullName(rs.getString("full_name"));
+                account.setPassword(rs.getString("password"));
+                account.setEmail(rs.getString("email"));
+                account.setPhone(rs.getString("phone"));
+                account.setStatus(rs.getInt("status"));
+                list.add(account);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 //Kiểm tra user
 public Account checkAccount(String userName,String password)
 {

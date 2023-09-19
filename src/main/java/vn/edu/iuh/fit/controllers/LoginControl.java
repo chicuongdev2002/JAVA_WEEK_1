@@ -12,6 +12,7 @@ import vn.edu.iuh.fit.repositories.GantAccessRepository;
 import vn.edu.iuh.fit.repositories.RoleRepository;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name="LoginControl",value = "/login-control")
 public class LoginControl  extends  HttpServlet{
@@ -21,8 +22,12 @@ public class LoginControl  extends  HttpServlet{
     private GantAccessRepository GrantRe = new GantAccessRepository();
     private Account a=new Account();
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        //Load thông tin account
+        List<Account> allAccount=AccRe.getAllAccount();
+        req.setAttribute("allAccount",allAccount);
+        req.getRequestDispatcher("/displayaccount.jsp").forward(req,resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

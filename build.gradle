@@ -28,6 +28,15 @@ dependencies {
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  //for loging
+  implementation('org.slf4j:slf4j-api:2.0.9')
+  implementation('org.slf4j:slf4j-simple:2.0.9')
+  //
+  // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api
+  compileOnly group: 'javax.servlet.jsp.jstl', name: 'javax.servlet.jsp.jstl-api', version: '1.2.2'
+// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+  implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+
 }
 
 test {
