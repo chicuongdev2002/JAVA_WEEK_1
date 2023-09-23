@@ -61,8 +61,7 @@ CREATE TABLE log (
 ## Chức năng
 - Đăng nhập
 - Hiển thị thông tin tài khoản
-- Hiển thị quyền của một tài khoản
-- Hiển thị tất cả tài khoản của một vai trò
+- Hiển thị quyền của các tài khoản
 - Cấp quyền cho một tài khoản
 - Ghi log đăng nhập/đăng xuất
 
