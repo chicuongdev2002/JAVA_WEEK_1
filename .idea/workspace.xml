@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="02188cdf-0458-45be-b7d0-66bed77f330c" name="Changes" comment="create register, xử lí controller login, register">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/controllers/AccountServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/displayaccount.jsp" afterDir="false" />
+    <list default="true" id="02188cdf-0458-45be-b7d0-66bed77f330c" name="Changes" comment="load data account">
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/controllers/AccountServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/controllers/LoginControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/controllers/LoginControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/db/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/db/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/GantAccessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/GantAccessRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/repositories/RoleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/displayaccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/displayaccount.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +219,9 @@
       <workItem from="1695009075486" duration="649000" />
       <workItem from="1695014378987" duration="595000" />
       <workItem from="1695016303058" duration="599000" />
-      <workItem from="1695092490764" duration="5467000" />
+      <workItem from="1695092490764" duration="6844000" />
+      <workItem from="1695363092334" duration="751000" />
+      <workItem from="1695475124958" duration="11357000" />
     </task>
     <task id="LOCAL-00001" summary="update dashboard">
       <option name="closed" value="true" />
@@ -269,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694881969224</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="load data account">
+      <option name="closed" value="true" />
+      <created>1695098023232</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695098023232</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +301,7 @@
     <MESSAGE value="update dashboard" />
     <MESSAGE value="firscommit" />
     <MESSAGE value="create register, xử lí controller login, register" />
-    <option name="LAST_COMMIT_MESSAGE" value="create register, xử lí controller login, register" />
+    <MESSAGE value="load data account" />
+    <option name="LAST_COMMIT_MESSAGE" value="load data account" />
   </component>
 </project>

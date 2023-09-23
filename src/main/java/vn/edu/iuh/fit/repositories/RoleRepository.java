@@ -35,4 +35,21 @@ public class RoleRepository {
         }
         return Roles;
     }
+    //Lấy tên Role dựa vào RoleID
+    public String getRoleName(String RoleID) {
+        String RoleName = "";
+        try {
+            String sql = "select role_name from role where role_id='" + RoleID + "'";
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+
+            while (rs.next()) {
+                RoleName = rs.getString(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return RoleName;
+    }
     }

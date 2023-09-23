@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.iuh.fit.entities.Account" %><%--
   Created by IntelliJ IDEA.
   User: Win 11
   Date: 9/19/2023
@@ -53,13 +54,40 @@
             margin: 4px 2px;
             cursor: pointer;
         }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
 <!-- Menu -->
 <ul class="nav">
     <li><a href="dashboard.jsp">Home</a></li>
-    <li><a href="">Account</a></li>
+    <li><a href="displayaccount.jsp">Account</a></li>
     <li><a href="#">Role</a></li>
     <li><a href="#">Log</a></li>
     <li style="float:right"><button class="logout-button" onclick="logout()">Đăng xuất</button></li>
@@ -79,16 +107,23 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="user" items="${da.allAccount}">
+        <%
+            List<Account> listA=(List<Account>)session.getAttribute("account");
+        %>
+        <%
+            for (Account a:listA){
+        %>
             <tr>
-                <td>${user.accountId}</td>
-                <td>${user.fullName}</td>
-                <td>${user.password}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.status}</td>
+                <td><%=a.getAccountId()%></td>
+                <td><%=a.getFullName()%></td>
+                <td><%=a.getPassword()%></td>
+                <td><%=a.getEmail()%></td>
+                <td><%=a.getPhone()%></td>
+                <td><%=a.getStatus()%></td>
+                <td><a class="btn btn-primary btn-sm" href="login-control?action=AddOrEdit">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="login-control?action=AddOrEdit">Del</a></td>
             </tr>
-        </c:forEach>
+        <%}%>
         </tbody>
     </table>
 </div>

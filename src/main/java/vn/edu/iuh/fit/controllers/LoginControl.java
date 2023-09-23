@@ -12,99 +12,96 @@ import vn.edu.iuh.fit.repositories.GantAccessRepository;
 import vn.edu.iuh.fit.repositories.RoleRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="LoginControl",value = "/login-control")
 public class LoginControl  extends  HttpServlet{
-
     private AccountRepository AccRe = new AccountRepository();
-    private RoleRepository RollRe = new RoleRepository();
+    private RoleRepository RoleRe = new RoleRepository();
     private GantAccessRepository GrantRe = new GantAccessRepository();
-    private Account a=new Account();
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        //Load thông tin account
-        List<Account> allAccount=AccRe.getAllAccount();
-        req.setAttribute("allAccount",allAccount);
-        req.getRequestDispatcher("/displayaccount.jsp").forward(req,resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Tải danh sách tài khoản và hiển thị trang dashboard
+        loadAccountListAndForwardToDashboard(req, resp);
+
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("test");
-        String action=req.getParameter("action");
-  try {
-      if(action.equalsIgnoreCase("login")) {
-          String username = req.getParameter("username");
-          String password = req.getParameter("password");
-          System.out.print(username + password);
-          Account a = AccRe.checkAccount(username, password);
-          if (a == null) {
-              req.setAttribute("messenger", "Thông tin không chính xác");
-              req.getRequestDispatcher("index.jsp").forward(req, resp);
-          } else {
-              // Kiểm tra quyền của người dùng
-              String role = GrantRe.getRoleByAccId(a.getAccountId());
-              if (role.equals("admin")) {
-                  // Lưu tên người dùng vào session
-                  HttpSession session = req.getSession();
-                  session.setAttribute("username", a.getFullName());
-                  resp.sendRedirect("dashboard.jsp");
-              } else {
-                  HttpSession session = req.getSession();
-                  session.setAttribute("username", a.getFullName());
-                  resp.sendRedirect("user.jsp");
-              }
-              if (action.equals("logout")) {
-                  HttpSession session = req.getSession();
-                  session.removeAttribute("username");
-                  resp.sendRedirect("index.jsp");
-                  //Đăng kí account mới
-              } else if (action.equalsIgnoreCase("register")) {
-                  // Lấy thông tin từ biểu mẫu đăng ký
-                  String accountId = req.getParameter("accountId");
-                  String fullName = req.getParameter("fullName");
-                  String newpassword = req.getParameter("password");
-                  String email = req.getParameter("email");
-                  String phone = req.getParameter("phone");
-                  String status = req.getParameter("status");
-
-                  // Kiểm tra xem tài khoản đã tồn tại hay chưa
-                  Account existingAccount = AccRe.getAccountById(accountId);
-                  if (existingAccount != null) {
-                      req.setAttribute("messageRegis", "Tài khoản đã tồn tại");
-                      req.getRequestDispatcher("register.jsp").forward(req, resp);
-                      return;
-                  }
-
-                  // Tạo một tài khoản mới
-                  Account newAccount = new Account();
-                  newAccount.setAccountId(accountId);
-                  newAccount.setFullName(fullName);
-                  newAccount.setPassword(newpassword);
-                  newAccount.setEmail(email);
-                  newAccount.setPhone(phone);
-                  newAccount.setStatus(Integer.parseInt(status));
-
-                  // Lưu tài khoản mới vào cơ sở dữ liệu
-                  boolean registrationSuccess = AccRe.createAccount(newAccount);
-
-                  if (registrationSuccess) {
-                      // Đăng ký thành công, chuyển hướng đến trang thành công
-                      resp.sendRedirect("index.jsp");
-                  } else {
-                      // Đăng ký thất bại, hiển thị thông báo lỗi
-                      req.setAttribute("messageRegis", "Đăng ký thất bại");
-                      req.getRequestDispatcher("DangKi.jsp").forward(req, resp);
-                  }
-              }
-          }
-      }
-  }catch(Exception e)
-        {
-            e.printStackTrace();
+        String action = req.getParameter("action");
+        if (action != null) {
+            switch (action) {
+                case "login":
+                    processLogin(req, resp);
+                    break;
+                case "logout":
+                    processLogout(req, resp);
+                    break;
+                case "register":
+                    processRegistration(req, resp);
+                    break;
+                default:
+                    // Xử lý khi action không hợp lệ
+                    break;
+            }
+        } else {
+            // Mặc định: Tải danh sách tài khoản và hiển thị trang dashboard
         }
+    }
 
+    private void processLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
+        Account a = AccRe.checkAccount(username, password);
+        System.out.println(a);
+        if (a == null) {
+            req.setAttribute("messenger", "Thông tin không chính xác");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        } else {
+            String role = GrantRe.getRoleByAccId(a.getAccountId());
+            System.out.println(role);
+            if (role != null) {
+                if (role.equals("admin")) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("username", a.getFullName());
+                    List<Account> account = AccRe.getAllAccount();
+                    for (Account ac : account) {
+                        String roles = GrantRe.getRoleByAccId(ac.getAccountId());
+                        System.out.println(roles);
+                        session.setAttribute("roles" + ac.getAccountId(), roles);
+                    }
+                    session.setAttribute("account", account);
+                    resp.sendRedirect("dashboard.jsp");
+                } else {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("username", a.getFullName());
+                    resp.sendRedirect("user.jsp");
+                }
+            } else {
+                // Xử lý khi không có quyền
+            }
+        }
+    }
+
+    private void processLogout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.removeAttribute("username");
+        resp.sendRedirect("index.jsp");
+    }
+
+    private void processRegistration(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Xử lý đăng ký tài khoản ở đây
+        // ...
+    }
+
+    private void loadAccountListAndForwardToDashboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Account> account = AccRe.getAllAccount();
+        account.forEach(p-> System.out.println(p));
+        HttpSession session = req.getSession();
+        session.setAttribute("account", account);
+        req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
     }
 }
