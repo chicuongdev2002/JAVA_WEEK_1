@@ -62,7 +62,8 @@ CREATE TABLE log (
 ![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/e2250713-a86e-4006-a4b3-e4ad198ab831)
 ## Chức năng
 - Đăng nhập
-![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/issues/2#issue-1939767836)
+- Đăng kí
+![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/aa8e1d44-1239-4518-876f-6b39b1b5349d)
 - Hiển thị thông tin tài khoản
 
 - Hiển thị quyền của các tài khoản
