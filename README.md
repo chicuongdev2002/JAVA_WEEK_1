@@ -61,8 +61,9 @@ CREATE TABLE log (
 ## Sơ đồ ER Diagram
 ![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/e2250713-a86e-4006-a4b3-e4ad198ab831)
 ## Chức năng
-- Đăng nhập
-- Đăng kí
+### Đăng nhập
+![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/984feaba-966a-4a65-aac1-68b6bfdb7733)
+### Đăng kí
 ![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/aa8e1d44-1239-4518-876f-6b39b1b5349d)
 - Hiển thị thông tin tài khoản
 
