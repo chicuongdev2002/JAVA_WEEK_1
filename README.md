@@ -58,6 +58,8 @@ CREATE TABLE log (
 - connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mydb","root","sapassword";
 ### Bước 3
 - Sau khi cài đặt CSDL và cấu hình kết nối, có thể triển khai ứng dụng truy cập nó thông qua trình duyệt web.
+## Sơ đồ ER Diagram
+![image](https://github.com/chicuongdev2002/week01_lab_NguyenChiCuong/assets/124854803/e2250713-a86e-4006-a4b3-e4ad198ab831)
 ## Chức năng
 - Đăng nhập
 - Hiển thị thông tin tài khoản
